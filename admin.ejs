@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/fontawesome/css/all.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="DrugVerify Logo">
+                    <h4 class="text-white">DrugVerify</h4>
+                </div>
+                <a href="/admin" class="active">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="/managedrugs">
+                    <i class="fas fa-pills"></i> Manage Drugs
+                </a>
+                <a href="/pharmacist">
+                    <i class="fas fa-user-md"></i> Pharmacists
+                </a>
+                <a href="/expireddrugs">
+                    <i class="fas fa-calendar-times"></i> Expired Drugs
+                </a>
+                <a href="/report">
+                    <i class="fas fa-chart-bar"></i> Reports
+                </a>
+                <a href="/settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="/logout" class="mt-auto">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 main-content">
+                <div class="welcome-section">
+                    <h2>Welcome back, Admin!</h2>
+                    <p>Here's what's happening with your drug verification system today.</p>
+                </div>
+
+                <!-- Statistics Cards -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-primary text-white">
+                            <div class="card-body d-flex align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2">Total Drugs</h6>
+                                    <h2 class="card-title mb-0">150</h2>
+                                </div>
+                                <i class="fas fa-pills stats-icon ms-auto"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-success text-white">
+                            <div class="card-body d-flex align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2">Active Pharmacists</h6>
+                                    <h2 class="card-title mb-0">25</h2>
+                                </div>
+                                <i class="fas fa-user-md stats-icon ms-auto"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-warning text-white">
+                            <div class="card-body d-flex align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2">Expiring Soon</h6>
+                                    <h2 class="card-title mb-0">12</h2>
+                                </div>
+                                <i class="fas fa-clock stats-icon ms-auto"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-danger text-white">
+                            <div class="card-body d-flex align-items-center">
+                                <div>
+                                    <h6 class="card-subtitle mb-2">Expired Drugs</h6>
+                                    <h2 class="card-title mb-0">8</h2>
+                                </div>
+                                <i class="fas fa-exclamation-triangle stats-icon ms-auto"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Management Section -->
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Add New Drug</h5>
+                                <button class="btn btn-sm btn-outline-primary">View All Drugs</button>
+                            </div>
+                            <div class="card-body">
+                                <form action="/admin/add-drug" method="POST" class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="drugName" class="form-label">Drug Name</label>
+                                        <input type="text" class="form-control" id="drugName" name="drugName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="serialNumber" class="form-label">Serial Number</label>
+                                        <input type="text" class="form-control" id="serialNumber" name="serialNumber" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="expiryDate" class="form-label">Expiry Date</label>
+                                        <input type="date" class="form-control" id="expiryDate" name="expiryDate" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="qrCode" class="form-label">QR Code</label>
+                                        <input type="file" class="form-control" id="qrCode" name="qrCode">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-plus-circle me-2"></i>Add Drug
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Add Pharmacist</h5>
+                                <button class="btn btn-sm btn-outline-success">View All Pharmacists</button>
+                            </div>
+                            <div class="card-body">
+                                <form action="/admin/add-pharmacist" method="POST" class="needs-validation" novalidate>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="license" class="form-label">License Number</label>
+                                        <input type="text" class="form-control" id="license" name="license" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-user-plus me-2"></i>Add Pharmacist
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Timeline -->
+                <div class="activity-timeline mt-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Recent Activities</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline-item">
+                                <h6>New Drug Added</h6>
+                                <p class="text-muted mb-0">Paracetamol 500mg added to inventory</p>
+                                <small class="text-muted">2 hours ago</small>
+                            </div>
+                            <div class="timeline-item">
+                                <h6>New Pharmacist Registered</h6>
+                                <p class="text-muted mb-0">Dr. Sarah Johnson joined the system</p>
+                                <small class="text-muted">5 hours ago</small>
+                            </div>
+                            <div class="timeline-item">
+                                <h6>Expired Drug Removed</h6>
+                                <p class="text-muted mb-0">Amoxicillin 250mg removed from inventory</p>
+                                <small class="text-muted">1 day ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="styles/bootstrap/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
